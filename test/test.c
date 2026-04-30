@@ -5,5 +5,13 @@
 
 int main(void)
 {
-	printf("Hello World!\n");
+	FILE *f = fopen("test.txt", "r");
+	if (!f)
+	{
+		perror("fopen");
+		return 1;
+	}
+	removeTooManySpaces(f,stdout);
+	fclose(f);
+	getchar();
 }
