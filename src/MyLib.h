@@ -5,4 +5,5 @@
 int countRows(FILE* stream);
 int countWhiteSpaces(FILE* stream);
 void removeTooManySpaces(FILE* inStream,FILE* outStream);
+int swapWhiteSpaces(FILE* inStream,FILE* outStream);
 #endif // MY_LIB
