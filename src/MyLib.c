@@ -1,7 +1,9 @@
 #include "MyLib.h"
+#include <stdlib.h>
+
 #define IN_WORD 1
 #define	NOT_IN_WORD 0
-
+#define BASE_STRING_SIZE 128
 int countRows(FILE* stream)
 {
 	int count=0;
@@ -87,4 +89,41 @@ int countSymbols(int c, FILE* stream)
 			count++;
 	}
 	return count;
+}
+
+char* getLine(FILE* stream, size_t* lenPtr)
+{
+	if (!stream)
+		return NULL;
+	int c;
+	size_t size = BASE_STRING_SIZE;
+	size_t length=0;
+	char* string = malloc(size);
+	if (string==NULL)
+		return NULL;
+	while((c=fgetc(stream)) != EOF && c!= '\n')
+	{
+		if (length+1>=size)
+		{
+			size*=2;
+			char* tmp=realloc(string,size);
+			if (tmp==NULL)
+			{
+				free(string);
+				return NULL;
+			}
+			string=tmp;
+		}
+		string[length]=(char)c;
+		length++;
+	}
+	string[length]='\0';
+	if (length==0&& c==EOF)
+	{
+		free(string);
+		return NULL;
+	}
+	if (lenPtr)
+		*lenPtr=length;
+	return string;
 }

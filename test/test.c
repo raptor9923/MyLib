@@ -10,8 +10,9 @@ int main(void)
 		perror("fopen");
 		return 1;
 	}
-	printf("%d", countSymbols('a',f));
-
+	size_t length = 0;
+	char* str =getLine(f,&length);
+	printf("%s o rozmiarze %zu", str,length);
 	fclose(f);
 	getchar();
 }
