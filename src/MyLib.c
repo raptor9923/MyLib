@@ -48,3 +48,4 @@ void removeTooManySpaces(FILE* inStream,FILE* outStream)
 		}
 	}
 }
+
