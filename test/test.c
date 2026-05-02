@@ -1,6 +1,5 @@
 
 #include <stdio.h>
-
 #include "MyLib.h"
 
 int main(void)
@@ -11,7 +10,8 @@ int main(void)
 		perror("fopen");
 		return 1;
 	}
-	removeTooManySpaces(f,stdout);
+	printf("%d", countSymbols('a',f));
+
 	fclose(f);
 	getchar();
 }
